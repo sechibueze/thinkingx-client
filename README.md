@@ -9,7 +9,19 @@
 - Crowdfunding - schoolera
 - E-learning amongst others
 - Job Posting
-- CampusInfoDesk
+- CampusInfodesk
+
+## Theming
+
+    - primary-color: #833cef
+    - primary-light-color: #ba6dff
+    - primary-dark-color: #4a00bb
+    - secondary-color: #992995
+    - secondary-light-color: #cc5cc6
+    - secondary-dark-color: #670067
+    - surface-color:
+    - background-color:
+    - error-color:
 
 ## Local setup
 
@@ -24,3 +36,8 @@
 `npm start`
 
 > Visit http://localhost:3000
+
+## Resources
+
+- [Color picking guide and tools](https://material.io/design/color/the-color-system.html#tools-for-picking-colors)
+- [Color accessibility checks](https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=833cef&secondary.color=992995)
