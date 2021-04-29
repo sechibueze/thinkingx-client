@@ -4,10 +4,12 @@
 
 - Authentication
 - TODO List App
-- Blog
+- Blog - comment like
 - User Profiles
-- Crowdfunding
+- Crowdfunding - schoolera
 - E-learning amongst others
+- Job Posting
+- CampusInfoDesk
 
 ## Local setup
 
@@ -16,6 +18,8 @@
 `git clone https://github.com/sechibueze/thinkingx-client.git`
 
 `cd thinkingx-client`
+
+`npm install`
 
 `npm start`
 
