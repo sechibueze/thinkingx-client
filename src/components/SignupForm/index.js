@@ -1,14 +1,15 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { firebaseAuth } from "../../config/firebase";
 const SignupForm = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const history = useHistory();
 
   /*** Hold component state */
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
 
   function handleSignup(e) {
     e.preventDefault();
@@ -18,7 +19,7 @@ const SignupForm = () => {
       return;
     }
     if (!passwordRef.current.value || !confirmPasswordRef.current.value) {
-      setError("Password field is required");
+      setError("Complete Password and confirm password fields");
       return;
     }
     if (
@@ -33,6 +34,8 @@ const SignupForm = () => {
       return;
     }
 
+    setLoading(true);
+
     firebaseAuth
       .createUserWithEmailAndPassword(
         emailRef.current.value,
@@ -40,27 +43,33 @@ const SignupForm = () => {
       )
       .then((result) => {
         console.log("[handleSignup ]: success", { result });
+        history.push("/");
       })
       .catch((error) => {
         console.log("[handleSignup ]: error", { error });
-      });
+        setError(error?.message);
+      })
+      .finally(() => setLoading(false));
   }
   return (
     <form onSubmit={handleSignup}>
+      <h2>Create account</h2>
+      <div>{error && <p> {error} </p>}</div>
       <div>
-        {error && <p> {error} </p>}
-        {message && <p> {message} </p>}
+        <label htmlFor="email">Email</label>
+        <input type="email" ref={emailRef} id="email" />
       </div>
       <div>
-        <input type="email" ref={emailRef} />
+        <label htmlFor="password">Password</label>
+        <input type="password" ref={passwordRef} id="password" />
       </div>
       <div>
-        <input type="password" ref={passwordRef} />
+        <label htmlFor="confirm-password">Confirm password</label>
+        <input type="password" ref={confirmPasswordRef} id="confirm-password" />
       </div>
-      <div>
-        <input type="password" ref={confirmPasswordRef} />
-      </div>
-      <button type="submit">Sign up</button>
+      <button type="submit" disabled={loading}>
+        Sign up
+      </button>
       <div>
         <p>
           Already have an account ? <Link to="/login">Log in</Link>

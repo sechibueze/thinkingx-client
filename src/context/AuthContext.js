@@ -13,6 +13,9 @@ const AuthContextProvider = ({ children }) => {
    */
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
+  function logout() {
+    return firebaseAuth.signOut();
+  }
 
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
@@ -25,7 +28,7 @@ const AuthContextProvider = ({ children }) => {
   const authContextData = {
     currentUser,
     login: () => {},
-    logout: () => {},
+    logout,
   };
 
   if (loading) {
