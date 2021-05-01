@@ -11,11 +11,15 @@ import Signup from "./components/SignupForm";
 import Login from "./components/LoginForm";
 import Home from "./pages/Home";
 import ForgotPasswordForm from "./components/ForgotPasswordForm";
-import { GRAPHQL_SERVER_URI } from "./constants";
+import { AUTH_TOKEN_KEY, GRAPHQL_SERVER_URI } from "./constants";
 // Configure Apollo client
 const client = new ApolloClient({
   uri: GRAPHQL_SERVER_URI,
   cache: new InMemoryCache(),
+  credentials: "include",
+  headers: {
+    authorization: `Bearer ${localStorage.getItem(AUTH_TOKEN_KEY)}`,
+  },
 });
 
 client
