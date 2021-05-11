@@ -1,15 +1,38 @@
+import { gql, useMutation } from "@apollo/client";
 import { useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { firebaseAuth } from "../../config/firebase";
+import { Link } from "react-router-dom";
+// import { firebaseAuth } from "../../config/firebase";
+export const SIGNUP_MUTATION = gql`
+  mutation UserSignup($name: String!, $email: String!, $password: String!) {
+    signup(name: $name, email: $email, password: $password) {
+      disabled
+      displayName
+      email
+      phoneNumber
+    }
+  }
+`;
 const SignupForm = () => {
+  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-  const history = useHistory();
 
   /*** Hold component state */
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [signup, { loading }] = useMutation(SIGNUP_MUTATION, {
+    onCompleted(data) {
+      console.log("Signup success", data);
+      setMessage("Great at signup");
+    },
+    onError(error) {
+      console.log("Oops, error occurred", error);
+      setError("An error occured");
+    },
+  });
 
   function handleSignup(e) {
     e.preventDefault();
@@ -33,28 +56,26 @@ const SignupForm = () => {
       setError("Password must match");
       return;
     }
+    const signupData = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
 
-    setLoading(true);
-
-    firebaseAuth
-      .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
-      .then((result) => {
-        console.log("[handleSignup ]: success", { result });
-        history.push("/");
-      })
-      .catch((error) => {
-        console.log("[handleSignup ]: error", { error });
-        setError(error?.message);
-      })
-      .finally(() => setLoading(false));
+    signup({
+      variables: signupData,
+    });
   }
+
   return (
     <form onSubmit={handleSignup}>
       <h2>Create account</h2>
       <div>{error && <p> {error} </p>}</div>
+      <div>{message && <p> {message} </p>}</div>
+      <div>
+        <label htmlFor="name">Name</label>
+        <input type="name" ref={nameRef} id="name" />
+      </div>
       <div>
         <label htmlFor="email">Email</label>
         <input type="email" ref={emailRef} id="email" />

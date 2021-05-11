@@ -1,0 +1,94 @@
+:root {
+  --primary-color: #833cef;
+  --primary-light-color: #ba6dff;
+  --primary-dark-color: #4a00bb;
+  --secondary-color: #992995;
+  --secondary-light-color: #cc5cc6;
+  --secondary-dark-color: #670067;
+  --surface-color: rgb(245, 235, 235);
+  --background-color: white;
+  --error-color: tomato;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0rem;
+  padding: 0rem;
+  border: 0rem;
+  outline: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+html {
+  font-size: 16px;
+}
+
+input {
+  background-color: var(--surface-color, "#ddd");
+
+  padding: 0.78rem;
+  font-size: 0.85rem;
+  display: block;
+  width: 100%;
+  margin: auto;
+  border-radius: 0.2rem;
+}
+
+.form-group {
+  margin: 0.75rem auto;
+  display: block;
+  width: 100%;
+}
+.form-group label {
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  margin: 0;
+  padding-bottom: 0.25rem;
+  text-align: left;
+}
+
+button {
+  display: block;
+  width: 80%;
+  margin: 1rem auto;
+  background-color: var(--primary-color);
+  color: var(--surface-color);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 0rem;
+  border-radius: 0.9rem;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.social_auth_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.5rem;
+}
+.auth_provider {
+  display: block;
+  width: 80%;
+  margin: 0.25rem auto;
+  text-align: center;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.alert {
+  display: block;
+  width: 98%;
+  padding: 0.25rem;
+  margin: 0.25rem auto;
+  text-align: left;
+  background-color: var(--error-color);
+  color: whitesmoke;
+}
