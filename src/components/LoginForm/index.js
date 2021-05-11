@@ -1,6 +1,12 @@
 import { useRef, useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { firebaseAuth } from "../../config/firebase";
+import styles from "./styles.module.css";
+import {
+  FacebookProvider,
+  GithubProvider,
+  GoogleProvider,
+} from "../../config/providers";
 import { useAuthContext } from "../../context/AuthContext";
 const LoginForm = () => {
   const emailRef = useRef();
@@ -10,6 +16,20 @@ const LoginForm = () => {
   /*** Hold component state */
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  function handleSocialAuth(provider) {
+    firebaseAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log("User has successfully signed in", result);
+        // Get token to local storage
+        // Redirect to dashboard
+      })
+      .catch((error) => {
+        console.log("Failed to sign up user", error);
+        setError(error?.message || "An error has just occurred, try again");
+      });
+  }
 
   function handleLogin(e) {
     e.preventDefault();
@@ -59,30 +79,55 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <div>{error && <p> {error} </p>}</div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input type="email" ref={emailRef} id="email" />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="password" ref={passwordRef} id="password" />
-      </div>
+    <>
+      <ul className="social_auth_wrapper">
+        <li
+          onClick={() => handleSocialAuth(GoogleProvider)}
+          className="auth_provider"
+        >
+          {" "}
+          Google Login{" "}
+        </li>
+        <li
+          onClick={() => handleSocialAuth(GithubProvider)}
+          className="auth_provider"
+        >
+          {" "}
+          Github Login{" "}
+        </li>
+        <li
+          onClick={() => handleSocialAuth(FacebookProvider)}
+          className="auth_provider"
+        >
+          Facebook Login{" "}
+        </li>
+      </ul>
+      <form onSubmit={handleLogin} className={styles.login_form}>
+        <div>{error && <p className="alert"> {error} </p>}</div>
 
-      <button type="submit" disabled={loading}>
-        Log in
-      </button>
-      <div>
-        <p>
-          New User ? <Link to="/signup">Sign up</Link>
-        </p>
-        <p>
-          <Link to="/forgot-password">Forgot password</Link>
-        </p>
-      </div>
-    </form>
+        <h2 className={styles.login_form_title}>Login</h2>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input type="email" ref={emailRef} id="email" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input type="password" ref={passwordRef} id="password" />
+        </div>
+
+        <button type="submit" disabled={loading}>
+          Log in
+        </button>
+        <div className={styles.login_helpers}>
+          <p>
+            New User ? <Link to="/signup">Sign up</Link>
+          </p>
+          <p>
+            <Link to="/forgot-password">Forgot password</Link>
+          </p>
+        </div>
+      </form>
+    </>
   );
 };
 

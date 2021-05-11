@@ -21,5 +21,6 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "content_security_policy": "default-src 'self'; https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig https://fonts.gstatic.com https://apis.google.com https://www.googleapis.com https://securetoken.googleapis.com https://accounts.google.com thinkingx-611dc.firebaseapp.com "
 }

@@ -11,6 +11,9 @@ export function useAuthContext() {
 export function useToken() {
   return localStorage.getItem(AUTH_TOKEN_KEY);
 }
+export function setToken(token) {
+  return localStorage.setItem(AUTH_TOKEN_KEY, token);
+}
 
 const AuthContextProvider = ({ children }) => {
   /**By default, we are loading until after the onAuthStateChanged had ran confirmed our status
