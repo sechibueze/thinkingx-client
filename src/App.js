@@ -22,6 +22,7 @@ const client = new ApolloClient({
   },
 });
 
+console.log("Firebase config", process.env.FIREBASE_CONFIG);
 client
   .query({
     query: gql`

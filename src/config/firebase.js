@@ -1,6 +1,6 @@
+import { FIREBASE_CONFIG } from "../constants";
 import firebase from "firebase";
 import "firebase/auth";
-
 const {
   REACT_APP_FIREBASE_API_KEY,
   REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -8,7 +8,8 @@ const {
   REACT_APP_FIREBASE_STORAGE_BUCKET,
   REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   REACT_APP_FIREBASE_APP_ID,
-} = process.env;
+} = FIREBASE_CONFIG;
+console.log("Main firebase config", FIREBASE_CONFIG);
 const firebaseConfig = {
   apiKey: REACT_APP_FIREBASE_API_KEY,
   authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
