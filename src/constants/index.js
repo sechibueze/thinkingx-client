@@ -1,7 +1,7 @@
 export const GRAPHQL_SERVER_URI =
   process.env.NODE_ENV === "production"
     ? "https://thinkingx.herokuapp.com"
-    : "http://localhost:4000";
+    : "http://localhost:5000";
 export const AUTH_TOKEN_KEY = "AUTH_TOKEN";
 
 export const FIREBASE_CONFIG = {
@@ -11,4 +11,21 @@ export const FIREBASE_CONFIG = {
   REACT_APP_FIREBASE_STORAGE_BUCKET: "thinkingx-611dc.appspot.com",
   REACT_APP_FIREBASE_MESSAGING_SENDER_ID: "173512552439",
   REACT_APP_FIREBASE_APP_ID: "1:173512552439:web:9b0f2582306c18779a48f2",
+};
+
+export const PROJECT_NAME = "Thinkingx";
+
+export const THEME = {
+  palette: {
+    primary: {
+      light: "#4791db",
+      dark: "#333",
+      main: "#390878",
+    },
+    secondary: {
+      light: "#833cef",
+      dark: "#444",
+      main: "#ccc",
+    },
+  },
 };

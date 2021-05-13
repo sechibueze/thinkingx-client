@@ -9,7 +9,6 @@ const {
   REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   REACT_APP_FIREBASE_APP_ID,
 } = FIREBASE_CONFIG;
-console.log("Main firebase config", FIREBASE_CONFIG);
 const firebaseConfig = {
   apiKey: REACT_APP_FIREBASE_API_KEY,
   authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -18,6 +17,7 @@ const firebaseConfig = {
   messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: REACT_APP_FIREBASE_APP_ID,
 };
+
 /* Initialize the firebase with the configs */
 firebase.initializeApp(firebaseConfig);
 

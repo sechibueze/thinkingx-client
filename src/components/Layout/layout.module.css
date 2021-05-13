@@ -1,0 +1,29 @@
+.page {
+  background-color: whitesmoke;
+
+  display: flex;
+
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.navbar {
+  background-color: transparent;
+
+  width: 100%;
+}
+
+.container {
+  background-color: teal;
+
+  width: 100%;
+  flex: 1; /** Sticky footer - push everything else to the edges ***/
+}
+.footer {
+  background-color: thistle;
+
+  width: 100%;
+}
