@@ -7,7 +7,11 @@
   margin: 1rem autos;
 }
 
-.socialButtonWrapper > * {
-  margin-bottom: 1rem;
+.socialButtonWrapper * {
   text-transform: capitalize;
+  /* align-items: center; */
+}
+
+.socialButtonWrapper button {
+  margin-bottom: 1rem;
 }

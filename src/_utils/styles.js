@@ -1,7 +1,7 @@
 export const authFormStyles = {
   form: {
     borderRadius: ".75rem",
-    width: "100%",
+    width: "95%",
     padding: "1rem",
     margin: "1rem auto",
 

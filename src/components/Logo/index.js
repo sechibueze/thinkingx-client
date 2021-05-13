@@ -3,9 +3,12 @@ import { PROJECT_NAME } from "../../constants";
 
 const Logo = ({ showProjectName, ...props }) => (
   <>
-    {" "}
-    <FaThinkPeaks {...props} />{" "}
-    {showProjectName && <span> {PROJECT_NAME} </span>}{" "}
+    <span>
+      <FaThinkPeaks {...props} />{" "}
+      {showProjectName && (
+        <span style={{ fontWeight: "bolder" }}> {PROJECT_NAME} </span>
+      )}
+    </span>
   </>
 );
 
